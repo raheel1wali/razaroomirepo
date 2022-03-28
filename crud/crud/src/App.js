@@ -3,25 +3,27 @@ import React from "react";
   import {Home} from "./components/Home";
   import {AddUser} from "./components/AddUser";
   import {EditUser} from "./components/EditUser";
-  // import { GlobalProvider } from "./context/GlobalState";
-  import 'bootstrap/dist/css/bootstrap.min.css'
+  import 'bootstrap/dist/css/bootstrap.min.css';
+  import{GlobalProvider} from './context/GlobalState';
 
 
-  function App() {
+  const App = () => {
     return (
-      <div style={{ maxWidth:"30rem", margin: "4rem auto" }}>
-        
-        <Routes>
-
-          <Route path="/" exact element={<Home />} />
-          <Route path="/add" exact element={<AddUser />} />
-          <Route path="/edit/:id" exact element={<EditUser />} />
-
-        </Routes>
-        
-        
+      <div style={{ maxWidth: "30rem", margin: "4rem auto" }}>
+        {/* <Home />
+        <AddUser />
+        <EditUser /> */}
+         {/* <GlobalProvider> */}
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/add" element={<AddUser/>} />
+            <Route exact path="/edit/:id" element={<EditUser />} />
+          </Routes>
+        {/* </GlobalProvider>  */}
+  
       </div>
     );
   }
+  
 
   export default App;

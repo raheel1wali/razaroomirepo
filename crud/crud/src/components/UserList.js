@@ -1,30 +1,36 @@
-import React from 'react';
-// import { GlobalContext } from '../context/GlobalState';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 import { Link } from 'react-router-dom';
-import{
-    ListGroup,
-    ListGroupItem,
-    Button
+import {
+  ListGroup,
+  ListGroupItem,
+  Button
 } from 'reactstrap';
-import { useContext } from 'react';
 
 export const UserList = () => {
-    // const {users, removeUser} = useContext(GlobalContext);
+  const { users, removeUser } = useContext(GlobalContext);
+  console.log(users)
   return (
     <ListGroup className="mt-4">
-              <ListGroupItem className='d-flex'>
-                  <strong> User One </strong>
-          <div className='ml-auto'>
-              <Link className='btn btn-warning mr-1' to={'/edit/${user.id}'}>Edit</Link>
-              <Button color='danger' className='margin_btn'>Delete</Button>
-          </div>
-          </ListGroupItem>  
-    
-        
+    {users.length > 0 ? (
+      <>
+      {users.map((user) => (
+        // console.log(user)
 
-        
-        
+              <ListGroupItem className="d-flex" key={user.id}>
+              <strong>{user.name}</strong> 
+             <div className="ml-auto"> 
+             {/* <Link to={`/edit`} color="warning" className="btn btn-warning mr-1">Edit</Link> */}
+             <Link to={`/edit/${user.id}`} color="warning" className="btn btn-warning mr-1">Edit</Link>
+              <Button onClick={() => removeUser(user.id)} color="danger">Delete</Button>
+             </div>
+            </ListGroupItem>
+      ))}
+      </>
+     ) : (
+      <h4 className="text-center">No User</h4>
+    )} 
 
-    </ListGroup>
+      </ListGroup>
   )
 }
